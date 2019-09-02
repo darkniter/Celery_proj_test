@@ -13,7 +13,7 @@ def standby(celery_val_wait):
     while not celery_val_wait.ready():
         sleep(0.1)
         print(celery_val_wait.ready())
-        print(celery_val_wait.id())
+        print(celery_val_wait.id)
     test_init(celery_val_wait.get())
 
 
