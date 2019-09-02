@@ -1,5 +1,5 @@
-from proj import celery
 from proj.tasks import add
+from time import sleep
 
 
 def test_init(celery_val):
@@ -7,18 +7,19 @@ def test_init(celery_val):
     pass
 
 
+def standby(celery_val_wait):
+    while not celery_val_wait.ready():
+        sleep(5)
+        print(celery_val_wait.ready())
+    test_init(celery_val_wait.get())
+
+
 def main():
     celery_val_init = add.delay(10, 20)
-    while not celery_val_init.ready():
-        print(celery_val_init.ready())
-
-    test_init(celery_val_init.get())
+    standby(celery_val_init)
 
     celery_val_init = add.delay('ab', 'ba')
-    while not celery_val_init.ready():
-        print(celery_val_init.ready())
-
-    test_init(celery_val_init.get())
+    standby(celery_val_init)
 
 
 if __name__ == "__main__":
