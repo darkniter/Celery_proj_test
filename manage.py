@@ -20,13 +20,13 @@ def main():
     celery_val_init = add.delay(10, 20)
     standby(celery_val_init)
 
-    celery_val_init = mul.delay(randint(0, sys.maxsize), randint(0, sys.maxsize))
+    celery_val_init = mul.delay(int(randint(0, sys.maxsize), randint(0, sys.maxsize)))
     standby(celery_val_init)
 
     celery_val_init = add.delay('ab', 'ba')
     standby(celery_val_init)
 
-    celery_val_init = mul.delay(randint(0, sys.maxsize), randint(0, sys.maxsize))
+    celery_val_init = mul.delay(int(randint(0, sys.maxsize), randint(0, sys.maxsize)))
     standby(celery_val_init)
 
 if __name__ == "__main__":
