@@ -11,8 +11,9 @@ def test_init(celery_val):
 
 def standby(celery_val_wait):
     while not celery_val_wait.ready():
-        sleep(1)
+        sleep(0.1)
         print(celery_val_wait.ready())
+        print(celery_val_wait.id())
     test_init(celery_val_wait.get())
 
 
@@ -26,6 +27,8 @@ def main():
     celery_val_init = add.delay('ab', 'ba')
     standby(celery_val_init)
 
+    celery_val_init = mul.delay(randint(0, sys.maxsize), randint(0, sys.maxsize))
+    standby(celery_val_init)
 
 if __name__ == "__main__":
     main()
