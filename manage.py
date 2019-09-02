@@ -11,8 +11,7 @@ def test_init(celery_val):
 
 def standby(celery_val_wait):
     while not celery_val_wait.ready():
-        print(celery_val_wait.ready())
-        print(celery_val_wait.id)
+        print(celery_val_wait.ready(), celery_val_wait.id)
     test_init(celery_val_wait.get())
 
 
