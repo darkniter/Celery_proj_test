@@ -5,7 +5,7 @@ from time import sleep
 
 @app.task
 def add(x, y):
-    sleep(30)
+    sleep(15)
     return x + y
 
 
