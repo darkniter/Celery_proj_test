@@ -1,5 +1,7 @@
 from proj.tasks import add, mul
 from time import sleep
+from random import randint
+import sys
 
 
 def test_init(celery_val):
@@ -18,7 +20,7 @@ def main():
     celery_val_init = add.delay(10, 20)
     standby(celery_val_init)
 
-    celery_val_init = mul.delay(123123123, 12223409879)
+    celery_val_init = mul.delay(randint(0, sys.maxsize), randint(0, sys.maxsize))
     standby(celery_val_init)
 
     celery_val_init = add.delay('ab', 'ba')
