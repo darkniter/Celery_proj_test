@@ -1,4 +1,4 @@
-from proj.tasks import add
+from proj.tasks import add, mul
 from time import sleep
 
 
@@ -16,6 +16,9 @@ def standby(celery_val_wait):
 
 def main():
     celery_val_init = add.delay(10, 20)
+    standby(celery_val_init)
+
+    celery_val_init = mul.delay(123123123, 12223409879)
     standby(celery_val_init)
 
     celery_val_init = add.delay('ab', 'ba')
